@@ -1,0 +1,130 @@
+package p1;
+
+import java.util.*;
+
+public class test {
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		try(sc;)
+		{
+			Set<Integer> ob=null;
+			String nm=null;
+			while(true)
+			{
+				System.out.println("**Choice**");
+				System.out.println("\t1.HashSet"+"\n\t2.LinkedHashSet"+"\n\t3.TreeSet"+"\n\t4.Exit");
+				System.out.println("Enter the choice");
+				switch(sc.nextInt()) 
+				{
+				case 1:{
+					ob=new HashSet<Integer>();
+					nm="HashSet";
+					break;
+				
+				}
+				case 2:{
+					ob=new LinkedHashSet<Integer>();
+					nm="LinkedHashSet";
+					break;
+				}
+				case 3:
+				{
+					ob=new TreeSet<Integer>();
+					nm="TreeSet";
+				}
+				case 4:
+				{
+				    System.out.println("Operation Stopped on Set");
+				    System.exit(0);
+				}
+				default:
+				{
+					System.out.println("Invalid Choice");
+					continue;
+				}
+				
+			}
+				
+				System.out.println("---------->perform operations on "+nm);
+				
+				xyz:while(true)
+				{
+					System.out.println("\t1.add(E)"+"\n\t2.Remove(Object)"+"\n\t3.DisplayElements"+"\n\t4.Exit");
+					System.out.println("Enter your Choice");
+					switch(sc.nextInt())
+					{
+					case 1:
+					{
+						System.out.println("Enter the element:");
+						ob.add(new Integer(sc.nextInt()));
+						break;
+					}
+					case 2:
+					{
+						if(ob.isEmpty())
+						{
+							System.out.println("Set is empty");
+						}
+						else
+						{
+							System.out.println("enter the element to be removed");
+							if(ob.remove(new Integer(sc.nextInt())))
+							{
+								System.out.println("element removed successfully");
+								System.out.println(ob.toString());
+								
+							}
+							else 
+							{
+								System.out.println("Element not found in the set");
+							}
+							break;
+							
+						}
+						
+					}
+					case 3:
+					{
+						if(ob.isEmpty())
+						{
+							System.out.println("set is empty");
+						}
+						else
+						{
+							System.out.println("====Iterator<E>====");
+							Iterator<Integer> it1=ob.iterator();
+							while(it1.hasNext())
+							{
+								System.out.println(it1.next()+" ");
+							}
+							System.out.println("\n====spliterater<T> foreach method");
+							Iterator<Integer> it2=ob.iterator();
+							it2.forEachRemaining((k)->System.out.println(k+" "));
+							
+							System.out.println("\n===spliterator<T>(java8)");
+							Spliterator<Integer> sp=ob.spliterator();
+							sp.forEachRemaining((k)->System.out.println(k+" "));
+							
+							System.out.println("\n===forEach===");
+							ob.forEachRemaining((k)->System.out.println(k+" "));
+							System.out.println();
+							break;
+							
+						}
+						case 4:
+						{
+							System.out.println("operations stopped on"+nm);
+							break xyz;
+						}
+						default:
+						{
+							System.out.println("Invalid choice");
+						}
+					}
+					}
+				}
+		}
+	}
+}
+}
